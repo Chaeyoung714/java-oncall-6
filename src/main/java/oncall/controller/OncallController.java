@@ -46,7 +46,7 @@ public class OncallController {
             List<EmployeeOrderDto> weekendOrders = employeeService.registerEmployees(weekendOrdersInput, DateType.WEEKDAY);
             List<String> holidayOrdersInput = inputHandler.readHolidayOrders();
             List<EmployeeOrderDto> holidayOrders = employeeService.registerEmployees(holidayOrdersInput, DateType.HOLIDAY);
-            assignService.registerOrders(weekendOrders, holidayOrders);//TODO : 개선하기
+            assignService.registerOrders(weekendOrders, holidayOrders);//TODO : 리스트 하나로 합치기
         });
     }
 }
