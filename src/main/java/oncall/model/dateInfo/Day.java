@@ -40,6 +40,10 @@ public enum Day {
         return daysFromStartDay;
     }
 
+    public static boolean isWeekday(Day day) {
+        return !day.equals(SUNDAY) && !day.equals(SATURDAY);
+    }
+
     public String getName() {
         return name;
     }

@@ -33,9 +33,30 @@ public class AssignService {
         for (WorkingDay workingDay : month.getDays()) {
             DateType dateType = workingDay.getDateType();
             EmployeeOrder employeeOrder = orderRepository.findFirstNotAssignedEmployeeAt(dateType);
+            if (isDuplicated(assignment, employeeOrder)) {
+                employeeOrder = exchangeOrder(employeeOrder, dateType);
+            }
             employeeOrder.assign();
             assignment.add(new AssignmentDto(workingDay, employeeOrder.getEmployee()));
         }
         return assignment;
+    }
+
+    private EmployeeOrder exchangeOrder(EmployeeOrder duplicatedEmployeeOrder, DateType dateType) {
+        EmployeeOrder nextEmployeeOrder = orderRepository.findFirstNotAssignedEmployeeExcept(duplicatedEmployeeOrder,
+                dateType);
+        return nextEmployeeOrder;
+    }
+
+    private boolean isDuplicated(List<AssignmentDto> assignment, EmployeeOrder employeeOrder) {
+        if (assignment.isEmpty()) {
+            return false;
+        }
+        Employee lastEmployee = assignment.get(assignment.size() - 1).employee();
+        Employee currentEmployee = employeeOrder.getEmployee();
+        if (lastEmployee.equals(currentEmployee)) {
+            return true;
+        }
+        return false;
     }
 }

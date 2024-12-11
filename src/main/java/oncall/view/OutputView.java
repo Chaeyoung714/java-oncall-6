@@ -26,7 +26,7 @@ public class OutputView {
         int date = workingDay.getDate();
         Day day = workingDay.getDay();
 
-        if (workingDay.isWeekday() && LegalHoliday.isLegalHoliday(month, date)) {
+        if (Day.isWeekday(day) && LegalHoliday.isLegalHoliday(month, date)) {
             return String.format("%s(휴일)", day.getName());
         }
         return day.getName();
