@@ -1,6 +1,6 @@
 package oncall;
 
-import oncall.controller.OncallController;
+import oncall.controller.OnCallController;
 import oncall.repository.EmployeeRepository;
 import oncall.repository.OrderRepository;
 import oncall.service.AssignService;
@@ -8,7 +8,6 @@ import oncall.service.EmployeeService;
 import oncall.view.InputHandler;
 import oncall.view.InputView;
 import oncall.view.OutputView;
-import org.junit.jupiter.api.Order;
 
 public class DependencyConfig {
     private final EmployeeRepository employeeRepository = new EmployeeRepository();
@@ -22,8 +21,8 @@ public class DependencyConfig {
         return new AssignService(orderRepository);
     }
 
-    public OncallController controller() {
-        return new OncallController(
+    public OnCallController controller() {
+        return new OnCallController(
                 new InputHandler(new InputView())
                 , new OutputView()
                 , employeeService()

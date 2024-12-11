@@ -12,13 +12,13 @@ import oncall.service.EmployeeService;
 import oncall.view.InputHandler;
 import oncall.view.OutputView;
 
-public class OncallController {
+public class OnCallController {
     private final InputHandler inputHandler;
     private final OutputView outputView;
     private final EmployeeService employeeService;
     private final AssignService assignService;
 
-    public OncallController(InputHandler inputHandler, OutputView outputView, EmployeeService employeeService,
+    public OnCallController(InputHandler inputHandler, OutputView outputView, EmployeeService employeeService,
                             AssignService assignService) {
         this.inputHandler = inputHandler;
         this.outputView = outputView;

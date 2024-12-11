@@ -1,11 +1,11 @@
 package oncall;
 
-import oncall.controller.OncallController;
+import oncall.controller.OnCallController;
 
 public class Application {
     public static void main(String[] args) {
         DependencyConfig config = new DependencyConfig();
-        OncallController controller = config.controller();
+        OnCallController controller = config.controller();
         controller.run();
     }
 }
