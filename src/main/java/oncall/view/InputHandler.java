@@ -33,6 +33,13 @@ public class InputHandler {
         });
     }
 
+    public List<String> readHolidayOrders() {
+        return RetryHandler.retryUntilSuccessAndReturn(() -> {
+            String answer = inputView.readHolidayOrders();
+            return parseOrders(answer);
+        });
+    }
+
     private List<String> parseOrders(String answer) {
         String[] parsedAnswer = answer.split(",");
         //TODO : 검증추가

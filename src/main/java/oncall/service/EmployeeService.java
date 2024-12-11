@@ -15,12 +15,12 @@ public class EmployeeService {
     }
 
     public List<EmployeeOrderDto> registerEmployees(List<String> weekendOrdersInput, DateType dateType) {
-        List<EmployeeOrderDto> employeeOrders = new ArrayList<>();
+        List<EmployeeOrderDto> employeeOrderDtos = new ArrayList<>();
         for (String employeeName : weekendOrdersInput) {
             Employee employee = employeeRepository.findOrCreate(employeeName);
             int order = weekendOrdersInput.indexOf(employeeName);
-            employeeOrders.add(new EmployeeOrderDto(employee, order, dateType));
+            employeeOrderDtos.add(new EmployeeOrderDto(employee, order, dateType));
         }
-        return employeeOrders;
+        return employeeOrderDtos;
     }
 }

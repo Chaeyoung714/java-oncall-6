@@ -1,10 +1,13 @@
 package oncall.controller;
 
 import java.util.List;
+import oncall.dto.AssignmentDto;
 import oncall.dto.EmployeeOrderDto;
 import oncall.dto.MonthDto;
+import oncall.exception.RetryHandler;
 import oncall.model.dateInfo.DateType;
 import oncall.model.assignment.WorkingMonth;
+import oncall.service.AssignService;
 import oncall.service.EmployeeService;
 import oncall.view.InputHandler;
 import oncall.view.OutputView;
@@ -13,22 +16,37 @@ public class OncallController {
     private final InputHandler inputHandler;
     private final OutputView outputView;
     private final EmployeeService employeeService;
+    private final AssignService assignService;
 
-    public OncallController(InputHandler inputHandler, OutputView outputView, EmployeeService employeeService) {
+    public OncallController(InputHandler inputHandler, OutputView outputView, EmployeeService employeeService,
+                            AssignService assignService) {
         this.inputHandler = inputHandler;
         this.outputView = outputView;
         this.employeeService = employeeService;
+        this.assignService = assignService;
     }
 
     public void run() {
-        MonthDto monthInput = inputHandler.readMonth();
-        WorkingMonth workingMonth = WorkingMonth.of(monthInput.month(), monthInput.startDay());
-        List<String> weekendOrdersInput = inputHandler.readWeekendOrders();
-        List<EmployeeOrderDto> weekendOrders = employeeService.registerEmployees(weekendOrdersInput, DateType.WEEKDAY);
+        WorkingMonth workingMonth = registerMonth();
+        registerOrders();
+        List<AssignmentDto> assignment = assignService.assignEmployeesInOrderOn(workingMonth);
+        outputView.printAssignmentResult(workingMonth, assignment);
+    }
 
+    private WorkingMonth registerMonth() {
+        return RetryHandler.retryUntilSuccessAndReturn(() -> {
+            MonthDto monthInput = inputHandler.readMonth();
+            return WorkingMonth.of(monthInput.month(), monthInput.startDay());
+        });
+    }
 
-
-
-
+    private void registerOrders() {
+        RetryHandler.retryUntilSuccess(() -> {
+            List<String> weekendOrdersInput = inputHandler.readWeekendOrders();
+            List<EmployeeOrderDto> weekendOrders = employeeService.registerEmployees(weekendOrdersInput, DateType.WEEKDAY);
+            List<String> holidayOrdersInput = inputHandler.readHolidayOrders();
+            List<EmployeeOrderDto> holidayOrders = employeeService.registerEmployees(holidayOrdersInput, DateType.HOLIDAY);
+            assignService.registerOrders(weekendOrders, holidayOrders);//TODO : 개선하기
+        });
     }
 }

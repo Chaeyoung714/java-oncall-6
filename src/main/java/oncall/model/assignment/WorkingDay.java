@@ -14,6 +14,15 @@ public class WorkingDay {
         this.dateType = dateType;
     }
 
+    public boolean isHoliday() {
+        return dateType.equals(DateType.HOLIDAY);
+    }
+
+    public boolean isWeekday() {
+        return dateType.equals(DateType.WEEKDAY);
+    }
+
+
     public Day getDay() {
         return day;
     }
