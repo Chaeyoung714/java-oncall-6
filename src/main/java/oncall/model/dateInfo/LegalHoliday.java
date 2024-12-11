@@ -8,6 +8,8 @@ import static oncall.model.dateInfo.Month.MARCH;
 import static oncall.model.dateInfo.Month.MAY;
 import static oncall.model.dateInfo.Month.OCTOBER;
 
+import java.util.Arrays;
+
 public enum LegalHoliday {
     신정(JANUARY, 1),
     삼일절(MARCH, 1),
@@ -25,5 +27,14 @@ public enum LegalHoliday {
     LegalHoliday(Month month, int date) {
         this.month = month;
         this.date = date;
+    }
+
+    public static boolean isLegalHoliday(Month month, int date) {
+        for (LegalHoliday legalHoliday : LegalHoliday.values()) {
+            if (legalHoliday.month.equals(month) && legalHoliday.date == date) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,5 +1,8 @@
 package oncall.controller;
 
+import oncall.dto.MonthDto;
+import oncall.model.organization.WorkingDay;
+import oncall.model.organization.WorkingMonth;
 import oncall.view.InputHandler;
 import oncall.view.OutputView;
 
@@ -13,6 +16,8 @@ public class OncallController {
     }
 
     public void run() {
+        MonthDto monthInput = inputHandler.readMonth();
+        WorkingMonth workingMonth = WorkingMonth.of(monthInput.month(), monthInput.startDay());
 
     }
 }
