@@ -16,7 +16,8 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public List<EmployeeOrderDto> registerTotalEmployeeOrders(List<EmployeeOrderDto> weekdayOrders, List<EmployeeOrderDto> holidayOrders) {
+    public List<EmployeeOrderDto> registerTotalEmployeeOrders(List<EmployeeOrderDto> weekdayOrders,
+                                                              List<EmployeeOrderDto> holidayOrders) {
         validateOrdersIdentical(weekdayOrders, holidayOrders);
         List<EmployeeOrderDto> totalEmployeeOrders = new ArrayList<>();
         totalEmployeeOrders.addAll(weekdayOrders);
@@ -57,5 +58,4 @@ public class EmployeeService {
             }
         });
     }
-
 }

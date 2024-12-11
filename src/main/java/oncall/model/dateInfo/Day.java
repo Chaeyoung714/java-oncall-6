@@ -34,7 +34,7 @@ public enum Day {
         for (int i = startDayIndex; i < DAY_COUNT; i++) {
             daysFromStartDay.add(Day.values()[i]);
         }
-        for (int i = 0; i < startDayIndex; i++) { //TODO : 요일 = 0일때 괜찮나?
+        for (int i = 0; i < startDayIndex; i++) {
             daysFromStartDay.add(Day.values()[i]);
         }
         return daysFromStartDay;

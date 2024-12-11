@@ -39,7 +39,7 @@ public class OrderRepository {
         return findNotAssignedEmployeeOrdersAt(dateType)
                 .filter(eo -> !eo.equals(duplicatedEmployeeOrder))
                 .findFirst()
-                .orElse(findFirstEmployeeOrderAt(dateType)); //TODO : 마지막 순번이 중복돼서 다음 순번을 찾을 때에 해당
+                .orElse(findFirstEmployeeOrderAt(dateType));
     }
 
     private EmployeeOrder findFirstEmployeeOrderAt(DateType dateType) {
@@ -49,7 +49,6 @@ public class OrderRepository {
                 .orElseThrow(IllegalStateException::new);
     }
 
-    //TODO : 문제생김, initialize 안하는 방식으로 생각해보기
     private void initializeAssignmentAt(DateType dateType) {
         orders.stream().filter(eo -> eo.getDateType().equals(dateType))
                 .forEach(eo -> {

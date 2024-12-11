@@ -27,10 +27,6 @@ public class EmployeeOrder {
         return employee;
     }
 
-    public int getOrder() {
-        return order;
-    }
-
     public DateType getDateType() {
         return dateType;
     }
