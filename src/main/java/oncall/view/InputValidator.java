@@ -1,5 +1,6 @@
 package oncall.view;
 
+import java.util.regex.Pattern;
 import oncall.exception.ExceptionMessages;
 
 public class InputValidator {
@@ -23,13 +24,12 @@ public class InputValidator {
 
     public static void validateOrders(String[] parsedAnswer) {
         for (String order : parsedAnswer) {
-            //TODO : 그외 영, 한만 허용 등
             if (order == null || order.isBlank()) {
                 throw new IllegalArgumentException(ExceptionMessages.WRONG_INPUT_VALUE.getMessage());
             }
-//            if (!order.matches(Pattern.quote("/^[ㄱ-ㅎ가-힣a-zA-Z]+$/"))) {
-//                throw new IllegalArgumentException(ExceptionMessages.WRONG_INPUT_VALUE.getMessage());
-//            }
+            if (!Pattern.matches("^[0-9a-zA-Zㄱ-ㅎ가-힣]*$", order)) {
+                throw new IllegalArgumentException(ExceptionMessages.WRONG_INPUT_VALUE.getMessage());
+            }
         }
     }
 }
