@@ -36,14 +36,17 @@ public class OrderRepository {
     }
 
     public EmployeeOrder findFirstNotAssignedEmployeeExcept(EmployeeOrder duplicatedEmployeeOrder, DateType dateType) {
-        Optional<EmployeeOrder> secondNotAssignedEmployee = findNotAssignedEmployeeOrdersAt(dateType)
+        return findNotAssignedEmployeeOrdersAt(dateType)
                 .filter(eo -> !eo.equals(duplicatedEmployeeOrder))
-                .findFirst();
-        if (secondNotAssignedEmployee.isEmpty()) {
-            //TODO : 맨 마지막 순번에서 중복이 생기면 해결 불가능. 개선하기
-            //다른 조취를 취해야함 => 큐에 넣을까??????????????= > 굳
-        }
-        return secondNotAssignedEmployee.get();
+                .findFirst()
+                .orElse(findFirstEmployeeOrderAt(dateType)); //TODO : 마지막 순번이 중복돼서 다음 순번을 찾을 때에 해당
+    }
+
+    private EmployeeOrder findFirstEmployeeOrderAt(DateType dateType) {
+        return orders.stream()
+                .filter(eo -> eo.getDateType().equals(dateType))
+                .findFirst()
+                .orElseThrow(IllegalStateException::new);
     }
 
     //TODO : 문제생김, initialize 안하는 방식으로 생각해보기

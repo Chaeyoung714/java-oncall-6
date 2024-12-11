@@ -8,8 +8,6 @@ import static oncall.model.dateInfo.Month.MARCH;
 import static oncall.model.dateInfo.Month.MAY;
 import static oncall.model.dateInfo.Month.OCTOBER;
 
-import java.util.Arrays;
-
 public enum LegalHoliday {
     신정(JANUARY, 1),
     삼일절(MARCH, 1),
