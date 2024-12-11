@@ -1,15 +1,10 @@
 package oncall;
 
 import oncall.model.assignment.WorkingMonth;
-import oncall.repository.EmployeeRepository;
-import oncall.service.EmployeeService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ValidationTest {
-    private final EmployeeRepository employeeRepository = new EmployeeRepository();
-    private final EmployeeService employeeService = new EmployeeService(employeeRepository);
-
     @Test
     void 잘못된_월을_입력하면_예외가_발생한다() {
         Assertions.assertThatThrownBy(() -> WorkingMonth.of(0, "월"))

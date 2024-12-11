@@ -6,10 +6,6 @@ public class ErrorHandler {
         System.out.println("[ERROR] " + e.getMessage());
     }
 
-    public static void handleSystemError(IllegalStateException e) {
-        System.out.println("[SYSTEM] " + e.getMessage());
-    }
-
     private ErrorHandler() {
     }
 }
