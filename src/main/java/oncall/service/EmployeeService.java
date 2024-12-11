@@ -5,11 +5,16 @@ import java.util.HashSet;
 import java.util.List;
 import oncall.dto.EmployeeOrderDto;
 import oncall.exception.ExceptionMessages;
-import oncall.model.dateInfo.DateType;
+import oncall.model.calendar.DateType;
 import oncall.model.assignment.Employee;
 import oncall.repository.EmployeeRepository;
 
 public class EmployeeService {
+    private static final int MIN_NICKNAME_LENGTH = 1;
+    private static final int MAX_NICKNAME_LENGTH = 5;
+    private static final int MIN_EMPLOYEE_COUNT = 5;
+    private static final int MAX_EMPLOYEE_COUNT = 35;
+
     private final EmployeeRepository employeeRepository;
 
     public EmployeeService(EmployeeRepository employeeRepository) {
@@ -49,11 +54,11 @@ public class EmployeeService {
         if (new HashSet<>(ordersInput).size() != ordersInput.size()) {
             throw new IllegalArgumentException(ExceptionMessages.WRONG_INPUT_VALUE.getMessage());
         }
-        if (ordersInput.size() < 5 || ordersInput.size() > 35) {
+        if (ordersInput.size() < MIN_EMPLOYEE_COUNT || ordersInput.size() > MAX_EMPLOYEE_COUNT) {
             throw new IllegalArgumentException(ExceptionMessages.WRONG_INPUT_VALUE.getMessage());
         }
         ordersInput.forEach(name -> {
-            if (name.length() < 1 || name.length() > 5) {
+            if (name.length() < MIN_NICKNAME_LENGTH || name.length() > MAX_NICKNAME_LENGTH) {
                 throw new IllegalArgumentException(ExceptionMessages.WRONG_INPUT_VALUE.getMessage());
             }
         });

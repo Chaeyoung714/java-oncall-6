@@ -1,12 +1,12 @@
-package oncall.model.dateInfo;
+package oncall.model.calendar;
 
-import static oncall.model.dateInfo.Month.AUGUST;
-import static oncall.model.dateInfo.Month.DECEMBER;
-import static oncall.model.dateInfo.Month.JANUARY;
-import static oncall.model.dateInfo.Month.JUNE;
-import static oncall.model.dateInfo.Month.MARCH;
-import static oncall.model.dateInfo.Month.MAY;
-import static oncall.model.dateInfo.Month.OCTOBER;
+import static oncall.model.calendar.Month.AUGUST;
+import static oncall.model.calendar.Month.DECEMBER;
+import static oncall.model.calendar.Month.JANUARY;
+import static oncall.model.calendar.Month.JUNE;
+import static oncall.model.calendar.Month.MARCH;
+import static oncall.model.calendar.Month.MAY;
+import static oncall.model.calendar.Month.OCTOBER;
 
 public enum LegalHoliday {
     신정(JANUARY, 1),

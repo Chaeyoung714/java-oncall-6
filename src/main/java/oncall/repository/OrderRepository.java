@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-import oncall.model.dateInfo.DateType;
+import oncall.model.calendar.DateType;
 import oncall.model.assignment.EmployeeOrder;
 
 public class OrderRepository {

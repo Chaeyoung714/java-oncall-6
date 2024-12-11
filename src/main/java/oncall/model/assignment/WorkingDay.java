@@ -1,7 +1,7 @@
 package oncall.model.assignment;
 
-import oncall.model.dateInfo.DateType;
-import oncall.model.dateInfo.Day;
+import oncall.model.calendar.DateType;
+import oncall.model.calendar.Day;
 
 public class WorkingDay {
     private final int date;

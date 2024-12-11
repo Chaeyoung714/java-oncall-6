@@ -1,4 +1,4 @@
-package oncall.model.dateInfo;
+package oncall.model.calendar;
 
 import java.util.ArrayList;
 import java.util.Arrays;

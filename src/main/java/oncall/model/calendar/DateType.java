@@ -1,4 +1,4 @@
-package oncall.model.dateInfo;
+package oncall.model.calendar;
 
 public enum DateType {
     WEEKDAY,

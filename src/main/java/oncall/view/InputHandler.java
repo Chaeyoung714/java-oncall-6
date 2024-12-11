@@ -7,6 +7,10 @@ import oncall.dto.MonthDto;
 import oncall.exception.RetryHandler;
 
 public class InputHandler {
+    private static final String PARSING_DELIMITER = ",";
+    private static final int MONTH = 0;
+    private static final int DAY = 1;
+
     private final InputView inputView;
 
     public InputHandler(InputView inputView) {
@@ -21,9 +25,9 @@ public class InputHandler {
     }
 
     private MonthDto parseMonth(String answer) {
-        String[] parsedAnswer = answer.split(",");
+        String[] parsedAnswer = answer.split(PARSING_DELIMITER);
         InputValidator.validateMonthInformation(parsedAnswer);
-        return new MonthDto(Integer.parseInt(parsedAnswer[0]), parsedAnswer[1]);
+        return new MonthDto(Integer.parseInt(parsedAnswer[MONTH]), parsedAnswer[DAY]);
     }
 
     public List<String> readWeekdayOrders() {
@@ -41,7 +45,7 @@ public class InputHandler {
     }
 
     private List<String> parseOrders(String answer) {
-        String[] parsedAnswer = answer.split(",", -1);
+        String[] parsedAnswer = answer.split(PARSING_DELIMITER, -1);
         InputValidator.validateOrders(parsedAnswer);
         return Arrays.stream(parsedAnswer).toList();
     }

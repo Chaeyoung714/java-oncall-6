@@ -1,6 +1,6 @@
 package oncall.model.assignment;
 
-import oncall.model.dateInfo.DateType;
+import oncall.model.calendar.DateType;
 
 public class EmployeeOrder {
     private final Employee employee;

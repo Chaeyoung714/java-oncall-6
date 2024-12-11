@@ -5,7 +5,7 @@ import oncall.dto.AssignmentDto;
 import oncall.dto.EmployeeOrderDto;
 import oncall.dto.MonthDto;
 import oncall.exception.RetryHandler;
-import oncall.model.dateInfo.DateType;
+import oncall.model.calendar.DateType;
 import oncall.model.assignment.WorkingMonth;
 import oncall.service.AssignService;
 import oncall.service.EmployeeService;

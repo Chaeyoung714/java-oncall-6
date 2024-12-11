@@ -4,9 +4,9 @@ import java.util.List;
 import oncall.dto.AssignmentDto;
 import oncall.model.assignment.WorkingDay;
 import oncall.model.assignment.WorkingMonth;
-import oncall.model.dateInfo.Day;
-import oncall.model.dateInfo.LegalHoliday;
-import oncall.model.dateInfo.Month;
+import oncall.model.calendar.Day;
+import oncall.model.calendar.LegalHoliday;
+import oncall.model.calendar.Month;
 
 public class OutputView {
 
