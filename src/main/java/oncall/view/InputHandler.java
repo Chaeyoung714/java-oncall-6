@@ -22,13 +22,13 @@ public class InputHandler {
 
     private MonthDto parseMonth(String answer) {
         String[] parsedAnswer = answer.split(",");
-        //TODO : 검증추가
+        InputValidator.validateMonthInformation(parsedAnswer);
         return new MonthDto(Integer.parseInt(parsedAnswer[0]), parsedAnswer[1]);
     }
 
-    public List<String> readWeekendOrders() {
+    public List<String> readWeekdayOrders() {
         return RetryHandler.retryUntilSuccessAndReturn(() -> {
-            String answer = inputView.readWeekendOrders();
+            String answer = inputView.readWeekdayOrders();
             return parseOrders(answer);
         });
     }
@@ -41,8 +41,8 @@ public class InputHandler {
     }
 
     private List<String> parseOrders(String answer) {
-        String[] parsedAnswer = answer.split(",");
-        //TODO : 검증추가
+        String[] parsedAnswer = answer.split(",", -1);
+        InputValidator.validateOrders(parsedAnswer);
         return Arrays.stream(parsedAnswer).toList();
     }
 }

@@ -42,11 +42,12 @@ public class OncallController {
 
     private void registerOrders() {
         RetryHandler.retryUntilSuccess(() -> {
-            List<String> weekendOrdersInput = inputHandler.readWeekendOrders();
-            List<EmployeeOrderDto> weekendOrders = employeeService.registerEmployees(weekendOrdersInput, DateType.WEEKDAY);
+            List<String> weekdayOrdersInput = inputHandler.readWeekdayOrders();
+            List<EmployeeOrderDto> weekdayOrders = employeeService.registerEmployees(weekdayOrdersInput, DateType.WEEKDAY);
             List<String> holidayOrdersInput = inputHandler.readHolidayOrders();
             List<EmployeeOrderDto> holidayOrders = employeeService.registerEmployees(holidayOrdersInput, DateType.HOLIDAY);
-            assignService.registerOrders(weekendOrders, holidayOrders);//TODO : 리스트 하나로 합치기
+            List<EmployeeOrderDto> totalOrders = employeeService.registerTotalEmployeeOrders(weekdayOrders, holidayOrders);
+            assignService.registerOrders(totalOrders);//TODO : 리스트 하나로 합치기
         });
     }
 }

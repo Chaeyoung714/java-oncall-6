@@ -19,11 +19,8 @@ public class AssignService {
         this.orderRepository = orderRepository;
     }
 
-    public void registerOrders(List<EmployeeOrderDto> weekendOrders, List<EmployeeOrderDto> holidayOrders) {
-        weekendOrders.forEach((e) -> {
-            orderRepository.save(new EmployeeOrder(e.employee(), e.order(), e.dateType()));
-        });
-        holidayOrders.forEach((e) -> {
+    public void registerOrders(List<EmployeeOrderDto> totalOrders) {
+        totalOrders.forEach((e) -> {
             orderRepository.save(new EmployeeOrder(e.employee(), e.order(), e.dateType()));
         });
     }
