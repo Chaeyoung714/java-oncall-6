@@ -1,6 +1,7 @@
 package oncall.view;
 
 
+import java.util.Arrays;
 import java.util.List;
 import oncall.dto.MonthDto;
 import oncall.exception.RetryHandler;
@@ -23,5 +24,18 @@ public class InputHandler {
         String[] parsedAnswer = answer.split(",");
         //TODO : 검증추가
         return new MonthDto(Integer.parseInt(parsedAnswer[0]), parsedAnswer[1]);
+    }
+
+    public List<String> readWeekendOrders() {
+        return RetryHandler.retryUntilSuccessAndReturn(() -> {
+            String answer = inputView.readWeekendOrders();
+            return parseOrders(answer);
+        });
+    }
+
+    private List<String> parseOrders(String answer) {
+        String[] parsedAnswer = answer.split(",");
+        //TODO : 검증추가
+        return Arrays.stream(parsedAnswer).toList();
     }
 }

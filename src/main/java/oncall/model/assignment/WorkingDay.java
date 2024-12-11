@@ -1,4 +1,4 @@
-package oncall.model.organization;
+package oncall.model.assignment;
 
 import oncall.model.dateInfo.DateType;
 import oncall.model.dateInfo.Day;

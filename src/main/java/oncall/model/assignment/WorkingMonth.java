@@ -1,4 +1,4 @@
-package oncall.model.organization;
+package oncall.model.assignment;
 
 import java.util.ArrayList;
 import java.util.List;
